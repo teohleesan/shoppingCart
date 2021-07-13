@@ -1,0 +1,35 @@
+@import '../../../style/theming.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  mat-list-item {
+    display: flex;
+    width: auto;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      // background-color: mat-color($app-primary, 100) !important;
+      color: mat-color($app-warn, 500) !important;
+    }
+    .routeIcon {
+      margin-right: 40px;
+    }
+  }
+}
+
+
+.mat-accordion .mat-expansion-panel{
+  margin-bottom: 0px !important;
+  height: max-content;
+  box-shadow: none !important;
+}
+.mat-expansion-panel-header{
+  margin :0px -10px !important;
+  font-weight: 900 !important;
+}
+
+

@@ -1,0 +1,66 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="avatar">
+    <mat-header-cell *matHeaderCellDef> photo
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <img [src]="element?.url ? element.url: getDefaultImage()" alt="" class="img-inq" [routerLink]="['/admin/user/user-maintenance']"
+      [queryParams]="{ id: element.id }">
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="emailId">
+    <mat-header-cell *matHeaderCellDef> email id
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.emailId}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef> fist name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef>last name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef> phoneNumber
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="roles">
+    <mat-header-cell *matHeaderCellDef> roles
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+        <mat-chip-list #chipList>
+          <mat-chip *ngIf="element.roles.subscriber" color="primary" selected>subscriber</mat-chip>
+          <mat-chip *ngIf="element.roles.admin" color="warn" selected>admin</mat-chip>
+        </mat-chip-list>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="createdOn">
+    <mat-header-cell *matHeaderCellDef> createdOn
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.createdOn | firestoreTimestamp}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions" sticky>
+    <mat-header-cell *matHeaderCellDef> actions
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-icon-button [matMenuTriggerFor]="actionmenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #actionmenu="matMenu">
+        <button mat-menu-item (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+          <span>edit</span>
+        </button>
+        <button mat-menu-item (click)="delete(element)">
+          <mat-icon>delete</mat-icon>
+          <span>delete</span>
+        </button>
+      </mat-menu>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -1,0 +1,9 @@
+<div class="dropzone"  appDropzone
+  (dropped)="onDrop($event)"
+  (hovered)="onHovered($event)"
+  [class.hovering]="isHovering">
+  <mat-icon>camera_alt</mat-icon>
+</div>
+<div *ngFor="let file of files">
+  <app-upload-task [file]="file" [path]="path" [id]="id"></app-upload-task>
+</div>

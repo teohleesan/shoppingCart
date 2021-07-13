@@ -1,0 +1,24 @@
+<section>
+  <div class="container" fxLayout="column" fxLayoutAlign="center center">
+    <h2>Sign up to myShoppingCart</h2>
+  <form [formGroup]="loginForm" fxLayout="column" >
+    <mat-form-field>
+      <input matInput formControlName="emailId" placeholder="email">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" placeholder="password">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="signin()" [disabled]="validateLogin()">
+      sign in
+      <mat-icon aria-label="label">login</mat-icon>
+    </button>
+    <mat-divider class="divider"></mat-divider>
+    <button mat-raised-button color="accent" (click)="signInwithGoogle()" [disabled]="validateLogin()">
+      google sign in
+      <mat-icon aria-label="label">login</mat-icon>
+    </button>
+  </form>
+</div>
+</section>

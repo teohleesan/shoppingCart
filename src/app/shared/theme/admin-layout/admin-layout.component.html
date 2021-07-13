@@ -1,0 +1,29 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>myShoppingCart</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="" routerLink="/admin/dashboard" >
+        <mat-icon>dashboard</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="home()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="signout()">
+        logout
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

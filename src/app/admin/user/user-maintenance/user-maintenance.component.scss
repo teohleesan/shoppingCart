@@ -1,0 +1,37 @@
+div {
+  margin: 10px 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .image-container {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .button {
+    // position: absolute;
+    opacity:0;
+    display: block;
+    transition: opacity 2s ease;
+  }
+  .image-container:hover .button {
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    width: 95%;
+
+    mat-checkbox {
+      margin-right: 50px;
+    }
+  }
+}

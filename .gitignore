@@ -1,0 +1,12 @@
+/e2e
+/.firebase
+/.github
+/.vscode
+/dist
+/firestore.rules
+/.browserslistrc
+/.editorconfig
+/.firebaserc
+/firebase.json
+/firestore.indexes.json
+/src/environments

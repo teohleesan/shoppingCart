@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="carousel">
+    <app-carousel></app-carousel>
+  </div>
+  <!-- <div>
+    <button (click)="check()"> check local storage</button>
+    <button (click)="removeCart()"> remove local storage</button>
+    <button (click)="getCart()"> get cart</button>
+  </div> -->
+  <div class="product">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="8px grid">
+      <div *ngFor="let product of products | async" fxFlex="16" fxFlex.md="25" fxFlex.sm="33.33" fxFlex.xs="100"
+        fxFlexAlign="stretch" fxLayout="column">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
+              <span [matBadge]="cart[product.id]" [matBadgeHidden]="cart[product.id] <= 0"
+              matBadgeColor="warn">{{product.code}}</span>
+
+            </mat-card-title>
+            <mat-card-subtitle>{{product.name}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content >
+              <div style="justify-content: center;display: flex;">
+                <img [src]="product.url" alt="" class="img-cartList">
+              </div>
+              <div style="justify-content: center;display: flex;margin-top: 10px;">
+                <span>stock balance {{product.stockQuantity}}</span>
+              </div>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- <bar-rating name="rating" [(rate)]="product.ratings" [max]="10" disabled></bar-rating> -->
+            <button [disabled]="product.stockQuantity === 0" mat-icon-button (click)="addToCart(product.id)">
+              <mat-icon aria-label="label">add</mat-icon>
+            </button>
+            <button [disabled]="cart[product.id] === 0 || !cart[product.id]" mat-icon-button (click)="removeFromCart(product.id)">
+              <mat-icon aria-label="label">remove</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

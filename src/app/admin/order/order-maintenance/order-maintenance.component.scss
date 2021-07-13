@@ -1,0 +1,48 @@
+@import '../../../style/theming.scss';
+.example-spacer {
+  flex: 1 1 auto;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+}
+.item{
+  width: 100%;
+}
+.left{
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 25px;
+  padding-bottom: 0px;
+}
+.right{
+  display: inline-block;
+  padding: 0px 0px;
+  overflow-y:auto;
+}
+mat-form-field{
+  width: 100%;
+}
+.amtStart{
+  margin-left: 25px;
+}
+.amtEnd{
+  margin-right: 25px;
+}
+.t_amtStart{
+  font-weight: 500;
+  margin-left: 25px;
+}
+.t_amtEnd{
+  font-weight: 500;
+  margin-right: 25px;
+}
+.mat-divider{
+  border-top-width: 3px;
+}
+
+
+

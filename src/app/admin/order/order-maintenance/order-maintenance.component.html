@@ -1,0 +1,148 @@
+<mat-toolbar>
+  <span>
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon aria-label="label">arrow_back</mat-icon>
+    </button>
+  </span>
+  <span class="example-spacer"></span>
+  <span>
+    <button mat-icon-button (click)="update()">
+      <mat-icon aria-label="label">save</mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
+<div class="container">
+  <div fxLayout="row wrap" fxLayout.sm="column">
+    <form [formGroup]="orderForm" fxLayout="row wrap" fxLayout.xs="column">
+      <div fxFlex="70" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid" class="left">
+        <h3 fxFlex="100">Customer Information</h3>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="firstName" placeholder="firstName" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="lastName" placeholder="lastName" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100">
+          <mat-form-field>
+            <input matInput formControlName="address1" placeholder="address1" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="country" placeholder="country" [matAutocomplete]="country" required>
+            <mat-autocomplete role="combobox" #country="matAutocomplete" [displayWith]="displayFn(countries)">
+              <mat-option *ngFor="let option of countryOption$ | async " [value]="option.code">
+                <span>{{option.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="state" placeholder="state">
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="zip" placeholder="zip">
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="phoneNumber" placeholder="phone number" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="30" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid" class="left">
+        <h3 fxFlex="100">Billing</h3>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="grandAmount" placeholder="grandAmount">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="discountAmount" placeholder="{{getDiscountPercent()}}">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="amountAfterDiscount" placeholder="amountAfterDiscount">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="gstAmount" placeholder="{{getGstPercent()}}">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="amountAfterGST" placeholder="amountAfterGST">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="deliveryChargesAmount" placeholder="deliveryChargesAmount">
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100">
+          <mat-form-field>
+            <input matInput formControlName="totalAmount" placeholder="totalAmount">
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div fxLayout="column" fxFlex="100" class="item left">
+    <form [formGroup]="orderItemForm" class="mat-elevation-z2">
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> product
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="unitPrice">
+          <mat-header-cell *matHeaderCellDef> unit price
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.unitPrice}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef> quantity
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef> amount
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> actions
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon aria-label="label">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editItem(element)">
+                <mat-icon>edit</mat-icon>
+                <span>edit</span>
+              </button>
+              <button mat-menu-item (click)="deleteItem(element)">
+                <mat-icon>delete</mat-icon>
+                <span>delete</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </form>
+  </div>
+</div>

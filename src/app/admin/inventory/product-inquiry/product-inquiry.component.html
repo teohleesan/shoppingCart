@@ -1,0 +1,75 @@
+<app-float-button></app-float-button>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="image">
+    <mat-header-cell *matHeaderCellDef>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <img [src]="element?.url ? element.url: getDefaultImage()" alt="" class="img-inq" [routerLink]="['/admin/inventory/product-maintenance']"
+        [queryParams]="{ id: element.id }" >
+     </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <mat-header-cell *matHeaderCellDef> code
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="currency">
+    <mat-header-cell *matHeaderCellDef> currency
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> price
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.price | currency}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ratings">
+    <mat-header-cell *matHeaderCellDef> ratings
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.ratings}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="seller">
+    <mat-header-cell *matHeaderCellDef> seller
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.seller}} </mat-cell>
+  </ng-container>
+   <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef> category
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="stockQuantity">
+    <mat-header-cell *matHeaderCellDef> stockQuantity
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.stockQuantity}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> actions
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+          <span>edit</span>
+        </button>
+        <button mat-menu-item (click)="delete(element)">
+          <mat-icon>delete</mat-icon>
+          <span>delete</span>
+        </button>
+      </mat-menu>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+

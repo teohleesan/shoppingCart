@@ -1,0 +1,24 @@
+{
+  "category" :[
+    {
+      "code": "U001",
+      "name": "fruit"
+    },
+    {
+      "code": "V001",
+      "name": "vegetable"
+    },
+    {
+      "code": "M001",
+      "name": "communication"
+    },
+    {
+      "code": "C002",
+      "name": "clothes"
+    },
+    {
+      "code": "S002",
+      "name": "subpreme"
+    }
+  ]
+}

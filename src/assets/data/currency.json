@@ -1,0 +1,17 @@
+{
+  "currency":[
+    {
+      "code": "SGD",
+      "name": "Singapore Dollar"
+    },
+    {
+      "code": "MYR",
+      "name": "Malaysia Ringgit"
+    },
+    {
+      "code": "USD",
+      "name": "US Dollar"
+    }
+
+  ]
+}

@@ -1,0 +1,27 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+  <mat-toolbar color="warn" class="mat-elevation-z6">
+    <mat-toolbar-row>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="home()">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span fxHide.lt-sm>myShoppingCart</span>
+      <span class="example-spacer"></span>
+
+      <span fxHide.lt-md *ngIf="user">Hello {{user.emailId}} </span>
+
+      <button mat-button *ngIf="!user" (click)="signin()">login</button>
+      <button mat-button *ngIf="!user" (click)="signup()">sign up</button>
+      <button mat-button *ngIf="user" (click)="signout()">logout</button>
+      <!-- <button mat-icon-button (click)="gotoCarts()" [disabled]="cartCount <= 0">
+        <mat-icon aria-label="label" [matBadge]="cartCount">shopping_cart</mat-icon>
+      </button> -->
+      <button mat-icon-button (click)="gotoCarts()">
+        <mat-icon aria-label="label" [matBadge]="cartCount">shopping_cart</mat-icon>
+      </button>
+      <button mat-button *ngIf="user && user.roles?.admin" (click)="adminLogin()">admin</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="example-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

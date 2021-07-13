@@ -1,0 +1,80 @@
+<section>
+  <div class="container" fxLayout="column" fxLayoutAlign="center center">
+    <h2>Welcome to myShoppingCart</h2>
+    <mat-tab-group>
+      <mat-tab label="Sign up">
+        <form [formGroup]="signUpForm" fxLayout="column">
+          <mat-form-field>
+            <input matInput formControlName="emailId" placeholder="email">
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" formControlName="password" placeholder="password">
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="confirm password">
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="firstName" placeholder="firstName ">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="lastName" placeholder="lastName ">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput formControlName="address1" placeholder="address1" cols="30" rows="5"></textarea>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-xs="25">
+            <mat-form-field>
+              <input matInput formControlName="country" placeholder="country" [matAutocomplete]="auto">
+              <mat-autocomplete role="combobox" #auto="matAutocomplete" [displayWith]="displayFn(countries)" >
+                <mat-option *ngFor="let option of filteredCountry$ | async " [value]="option.code">
+                  <span>{{option.name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="state" placeholder="state">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-xs="25">
+            <mat-form-field>
+              <input matInput formControlName="zip" placeholder="zip">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="phoneNumber" placeholder="phoneNumber">
+            </mat-form-field>
+          </div>
+        </form>
+        <button mat-raised-button color="primary" (click)="signup()" [disabled]="validateSignUp()">
+          register
+          <mat-icon aria-label="label">app_registration</mat-icon>
+        </button>
+      </mat-tab>
+      <mat-tab label="Log in">
+        <form [formGroup]="loginForm" fxLayout="column" >
+          <mat-form-field>
+            <input matInput formControlName="emailId" placeholder="email">
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" formControlName="password" placeholder="password">
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="signin()" [disabled]="validateLogin()" style="margin-top: 20px;">
+            sign in
+            <mat-icon aria-label="label">login</mat-icon>
+          </button>
+          <mat-divider class="divider"></mat-divider>
+          <button mat-raised-button color="accent" (click)="signInwithGoogle()" [disabled]="validateLogin()">
+            google sign in
+            <mat-icon aria-label="label">login</mat-icon>
+          </button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>
+
+

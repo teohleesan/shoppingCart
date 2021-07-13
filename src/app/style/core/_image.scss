@@ -1,0 +1,40 @@
+.img-main {
+  border-radius: 70px;
+  width: 120px;
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:hover{
+    cursor: pointer;
+  }
+}
+.img-inq{
+  border-radius: 70px;
+  width: 40px;
+  height: 40px;
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:hover{
+    cursor: pointer;
+  }
+}
+.img-cart {
+  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:hover{
+    cursor: pointer;
+  }
+}
+.img-cartList {
+  border-radius: 20px;
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: cover;
+}
+.img-carousel{
+  max-width: 500px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+
+

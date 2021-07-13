@@ -1,0 +1,96 @@
+
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="" (click)="gotoProducts()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <button [disabled]="cart.length === 0 || (!isSubscriber &&  subscriberId !== '')"
+    mat-stroked-button color="primary" (click)="checkOut()">
+    <mat-icon>shopping_basket</mat-icon>
+    Check Out
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" aria-label="" (click)="removeCart()" matTooltip="clear cart">
+    <mat-icon>remove_shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-list role="list" class="title">
+  <mat-list-item role="listitem">
+    <div fxLayout="column" fxFlex="20"></div>
+    <div fxLayout="column" fxFlex="60">Item Description</div>
+    <div fxLayout="column" fxFlex="20">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span>
+          QTY
+        </span>
+        <span>
+          Amount
+        </span>
+        <p matLine>
+        </p>
+        <p matLine>
+        </p>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>
+<mat-list>
+  <mat-list-item *ngFor="let element of cart">
+    <div fxLayout="row" class="cartList">
+      <div fxLayout="column" fxFlex="20">
+        <img class="img-cart" [src]="element?.url ? element.url: getDefaultImage()" alt="" >
+      </div>
+      <div fxLayout="column" fxFlex="60">
+        <h3 matLine> {{element.code}} </h3>
+        <p matLine>
+          <span>{{element.name}} </span>
+        </p>
+        <p matLine>
+          Unit Price
+          <span>{{element.price | currency}} </span>
+          /
+          Stock Balance
+          <span>{{element.stockQuantity}}</span>
+        </p>
+      </div>
+      <div fxLayout="column" fxFlex="20">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <p matLine>
+            <span>{{element.count}}</span>
+          </p>
+          <p matLine>
+            <span>{{element.count * element.price | currency}}</span>
+          </p>
+          <p matLine>
+            <button mat-icon-button (click)="addToCart(element.id)">
+              <mat-icon aria-label="label">add</mat-icon>
+            </button>
+          </p>
+          <p matLine>
+            <button mat-icon-button (click)="removeFromCart(element.id)">
+              <mat-icon aria-label="label">remove</mat-icon>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+ </mat-list>
+ <mat-list role="list" class="title">
+  <mat-list-item role="listitem">
+    <div fxLayout="column" fxFlex="20"></div>
+    <div fxLayout="column" fxFlex="60"></div>
+    <div fxLayout="column" fxFlex="20">
+      <p matLine>
+        <span>Total amount : </span>
+        <span>{{cart | sum:'amount' |currency}} </span>
+      </p>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+
+
+

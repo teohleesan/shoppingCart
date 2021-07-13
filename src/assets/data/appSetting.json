@@ -1,0 +1,9 @@
+{
+  "appSetting": [
+    {
+      "defaultAvatarScr": "./assets/images/avatar.jpg",
+      "defaultBlankScr": "./assets/images/blankImages.png",
+      "pageSize": 20
+    }
+  ]
+}

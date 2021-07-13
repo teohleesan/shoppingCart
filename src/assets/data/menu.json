@@ -1,0 +1,73 @@
+{
+  "menu":[
+    {
+      "displayName" : "Order",
+      "name": "order",
+      "icon": "recent_actors",
+      "route": "order",
+      "type": "sub",
+      "children":[
+        {
+          "displayName": "Order Inquiry",
+          "name": "order",
+          "icon": "point_of_sale",
+          "route": "/admin/order/order-inquiry",
+          "type": "link"
+        },
+        {
+          "displayName": "Order Maintenance",
+          "name": "order",
+          "icon": "receipt",
+          "route": "/admin/order/order-maintenance",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "displayName" : "Inventory",
+      "name": "inventory",
+      "icon": "recent_actors",
+      "route": "inventory",
+      "type": "sub",
+      "children":[
+        {
+          "displayName": "Product Inquiry",
+          "name": "inventory",
+          "icon": "inventory",
+          "route": "/admin/inventory/product-inquiry",
+          "type": "link"
+        },
+        {
+          "displayName": "Product Maintenance",
+          "name": "inventory",
+          "icon": "engineering",
+          "route": "/admin/inventory/product-maintenance",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "displayName" : "User",
+      "name": "user",
+      "icon": "person",
+      "route": "user",
+      "type": "sub",
+      "children":[
+        {
+          "displayName": "User Inquiry",
+          "name": "user",
+          "icon": "group",
+          "route": "/admin/user/user-inquiry",
+          "type": "link"
+        },
+        {
+          "displayName": "User Maintenance",
+          "name": "user",
+          "icon": "person_add",
+          "route": "/admin/user/user-maintenance",
+          "type": "link"
+        }
+      ]
+    }
+  ]
+}

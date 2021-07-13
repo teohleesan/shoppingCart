@@ -1,0 +1,83 @@
+div {
+  margin: 10px 0;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .image-container {
+    position: relative;
+    width: 120px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 2s ease;
+  }
+
+  .image-container:hover .overlay {
+    display: block;
+    // background: rgba(0, 0, 0, .3);
+    background: none;
+  }
+
+  img {
+    position: absolute;
+    left: 0;
+    top:0;
+    height: 120px;
+    z-index: 1;
+  }
+
+  .title {
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    color:black;
+    z-index: 2;
+    top: 130px;
+    transition: top 1s ease;
+  }
+  .image-container:hover .title {
+    top: 90px;
+  }
+
+  .button {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+  .image-container:hover .button {
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  form{
+    // justify-content: center;
+    width:95%;
+    mat-form-field{
+      width: 100%;
+    }
+  }
+  .btn{
+    width:95%;
+  }
+}
+
+
+

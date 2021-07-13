@@ -1,0 +1,100 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="" (click)="gotoCart()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="accent" (click)="confirmOrder()" [disabled]="validateForm()">
+    <mat-icon aria-label="label">payments</mat-icon> confirm order
+  </button>
+</mat-toolbar>
+<div class="container">
+  <div fxLayout="row wrap" fxLayout.sm="column" class="content">
+    <div fxFlex="70" class="left" appMatElevation>
+      <h3>Customer Information</h3>
+      <form [formGroup]="form" fxLayout="column" style="margin-top: 20px;">
+
+        <mat-form-field>
+          <input matInput formControlName="firstName" placeholder="firstName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="lastName" placeholder="lastName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="address1" placeholder="address1" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="country" placeholder="country" [matAutocomplete]="shipCountry" required>
+          <mat-autocomplete role="combobox" #shipCountry="matAutocomplete" [displayWith]="displayFn(countries)">
+            <mat-option *ngFor="let option of countryOption$ | async " [value]="option.code">
+              <span>{{option.name}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="state" placeholder="state">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="zip" placeholder="zip">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="phoneNumber" placeholder="phone number" required>
+        </mat-form-field>
+      </form>
+    </div>
+    <div fxFlex="30" class="right" appMatElevation>
+      <mat-grid-list cols="3" rowHeight="4:1" style="margin-top: 20px;">
+        <h3 class="t_amtStart">Billing</h3>
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">Total amount</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.grandAmount | currency}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">Discount amount ({{order.discountPercent}}%)</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.discountAmount | currency}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">Amount after discount</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.amountAfterDiscount | currency}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">GST amount ({{order.gstPercent}}%)</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.gstAmount | currency}}</div>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">Amount after GST</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.amountAfterGST | currency}}</div>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <div class="amtStart" fxFlex fxLayoutAlign="start center">Delivery charges</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="amtEnd" fxFlex fxLayoutAlign="end center">{{order.deliveryChargesAmount | currency}}</div>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="3">
+          <mat-divider style="width: 100%;"></mat-divider>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <div class="t_amtStart" fxFlex fxLayoutAlign="start center">Total charge amount</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="t_amtEnd" fxFlex fxLayoutAlign="end center">{{order.totalAmount | currency}}</div>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+  </div>
+</div>

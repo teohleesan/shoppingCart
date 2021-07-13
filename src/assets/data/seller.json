@@ -1,0 +1,16 @@
+{
+  "seller":[
+    {
+      "code": "A001",
+      "name": "ABC Pte Ltd"
+    },
+    {
+      "code": "A002",
+      "name": "DEF Pte Ltd"
+    },
+    {
+      "code": "A003",
+      "name": "XYX Pte Ltd"
+    }
+  ]
+}

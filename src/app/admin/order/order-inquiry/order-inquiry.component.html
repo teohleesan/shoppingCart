@@ -1,0 +1,50 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="createdOn">
+    <mat-header-cell *matHeaderCellDef> date
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.createdOn | firestoreTimestamp}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> customer
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="country">
+    <mat-header-cell *matHeaderCellDef> country
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef> phone number
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.phoneNumber }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalAmount">
+    <mat-header-cell *matHeaderCellDef> amount
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.totalAmount | currency}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> action
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="edit(element)">
+        <mat-icon>edit</mat-icon>
+        <span>edit</span>
+      </button>
+      <button mat-menu-item (click)="delete(element)">
+        <mat-icon>delete</mat-icon>
+        <span>delete</span>
+      </button>
+    </mat-menu>
+  </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -1,0 +1,16 @@
+<h2>{{title}}</h2>
+<div>
+  <mat-grid-list [responsive]="responsive" (responsiveColsChange)="cols = $event" gutterSize="6px">
+    <mat-grid-tile *ngFor="let image of imageurls; let i = index">
+
+      <!-- <img src="{{image.src}}" alt="Gallery Image"
+         (click)="preview(i)" /> -->
+      <img [src]="image" alt="">
+      <mat-grid-tile-footer>
+        <span matLine>Gallery Image: {{ i }}</span>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <button mat-button (click)="close($event)">Cancel</button>
+  <button mat-button (click)="close($event)" cdkFocusInitial>Install</button>
+</div>

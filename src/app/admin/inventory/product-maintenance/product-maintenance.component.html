@@ -1,0 +1,88 @@
+<div #parent class="container" fxLayout="column">
+  <div class="image-container">
+    <img [src]="image$" alt="" (click)="getFile()" class="img-main">
+    <input type="file" #fileUpload style="display: none;">
+    <p class="title">{{id}}</p>
+    <div class="overlay"></div>
+    <button *ngIf="!newMode" class="button" #deleteBtn mat-mini-fab color="warn" (click)="deleteImage()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="form" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid">
+    <div fxFlex="15" fxFlex.lt-md="40" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="code" placeholder="code">
+      </mat-form-field>
+    </div>
+    <div fxFlex="60" fxFlex.lt-md="60" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="name" placeholder="name">
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="category" placeholder="category" [matAutocomplete]="category">
+        <mat-autocomplete role="combobox" #category="matAutocomplete" [displayWith]="displayFn(categories)">
+          <mat-option *ngFor="let option of categoryOptions$ | async " [value]="option.code">
+            <span>{{option.name}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="seller" placeholder="seller" [matAutocomplete]="seller">
+        <mat-autocomplete role="combobox" #seller="matAutocomplete" [displayWith]="displayFn(sellers)">
+          <mat-option *ngFor="let option of sellerOptions$ | async " [value]="option.code">
+            <span>{{option.name}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="currency" placeholder="currency" [matAutocomplete]="currency">
+        <mat-autocomplete role="combobox" #currency="matAutocomplete" [displayWith]="displayFn(currencies)">
+          <mat-option *ngFor="let option of currencyOptions$ | async " [value]="option.code">
+            <span>{{option.name}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="price" placeholder="price">
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="ratings" placeholder="ratings">
+      </mat-form-field>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="50" fxFlex.lt-sm="100">
+      <mat-form-field>
+        <input matInput formControlName="stockQuantity" placeholder="stock Quantity">
+      </mat-form-field>
+    </div>
+  </form>
+  <div fxLayout="row" class="audit" style="width: 95%;">
+    <mat-icon aria-label="label">timer</mat-icon>
+    <span>{{displayAudit()}}</span>
+  </div>
+  <div class="btn">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button color="primary" (click)="update()">
+        <mat-icon aria-label="label">edit</mat-icon> update
+      </button>
+      <button mat-raised-button color="primary" (click)="uploadProductImage(parent.offsetWidth, parent.offsetHeight)">
+        <mat-icon aria-label="label">local_see</mat-icon> Upload image
+      </button>
+      <button mat-raised-button color="accent" routerLink="/admin/inventory/product-inquiry">
+        <mat-icon aria-label="label">cancel</mat-icon> cancel
+      </button>
+      <button mat-raised-button color="primary" (click)="getuploadedimage()">
+        <mat-icon aria-label="label">local_see</mat-icon> get uploaded image
+      </button>
+    </div>
+  </div>
+</div>

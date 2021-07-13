@@ -1,0 +1,28 @@
+section {
+  margin-top: 50px;
+  height: calc(100vh - 10%) ;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  .container{
+    max-width: 400px;
+    h2 {
+      color: rgb(107, 101, 101);
+      overflow-wrap: break-word;
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      margin: 20px 0;
+    }
+    .divider{
+      margin: 10px 0px;
+    }
+    button {
+      display: block;
+      width: 100%;
+    }
+  }
+
+
+}

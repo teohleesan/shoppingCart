@@ -1,0 +1,22 @@
+<mat-accordion >
+  <mat-expansion-panel *ngFor="let item of menus | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <!-- Cabeceras del submenu -->
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <!-- <mat-icon class="routeIcon">{{item.icon}}</mat-icon> -->
+         {{item.displayName}}
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <span class="child" *ngFor="let child of item.children">
+      <mat-list-item [routerLink]="[child.route]">
+        <!-- Entradas de cada submenú  -->
+        <div fxLayout="row" fxLayoutAlign="space-between center" >
+          <mat-icon class="routeIcon">{{child.icon}}</mat-icon>
+          {{child.displayName}}
+        </div>
+      </mat-list-item>
+    </span>
+  </mat-expansion-panel>
+</mat-accordion>

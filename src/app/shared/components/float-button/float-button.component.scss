@@ -1,0 +1,24 @@
+@import '../../../style/theming';
+
+.float {
+  float: right;
+  position: fixed;
+  bottom: 30px;
+  right:30px;
+  z-index: 1000;
+  color: #fff;
+  &:hover{
+    animation-name: in;
+    animation-duration: 4s;
+  }
+}
+@keyframes in {
+  from {
+    background-color:$accent;
+    color: #fff;
+  }
+  to {
+    background-color: $warn;
+    color: #fff;
+  }
+}

@@ -1,0 +1,36 @@
+.container {
+  height: 100%;
+  width: 100%;
+  .carousel {
+    left: 0;
+    right: 0;
+    display: block;
+  }
+}
+.product {
+  width:100%;
+
+  mat-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    word-break: break-all;
+    img {
+      object-fit: cover; /*this makes the image in src fit to the size specified below*/
+      width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+      height: 80%;
+    }
+    mat-card-title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button{
+        margin-right:auto;
+      }
+    }
+    mat-card-actions {
+      margin: auto 0 0;
+      bottom: 0;
+    }
+  }
+}
